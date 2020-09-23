@@ -1,6 +1,7 @@
 ---
 date: "2020-09-15T20:58:42+05:30"
 title: "Logic for CS-Module 1"
+tags: ["College","Notes","S5"]
 ---
 # Module 1
 

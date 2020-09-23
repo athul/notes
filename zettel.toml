@@ -1,4 +1,3 @@
 description = "Hello World. This is my zettel notebook"
 site_name = "My Zettel"
 pygmentsstyle="monokai"
-site_prefix="notes"
