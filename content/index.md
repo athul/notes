@@ -4,9 +4,9 @@ title: "Index"
 
 # Contents
 
-## Digital Communication
+## Graph Theory
 
-- Not Yet
+- [[graph-mod1]]
 
 ## Logic for CS
 
@@ -15,3 +15,7 @@ title: "Index"
 ## Graph Theory
 
 - [[graph-mod1]]
+
+## Discrete Computational Structures
+
+- [[dcs-1]]
