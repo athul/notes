@@ -11,7 +11,7 @@ Created: Sep 11, 2020 10:54 AM
 
 **👉**
 
-![Module%201%2083acc9e1566046b786ead9dd0589c6f7/Screen_Shot_2020-09-09_at_11.34.02_AM.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/60d1f413-002c-436f-8e72-84ef8592ac2a/Screen_Shot_2020-09-09_at_11.34.02_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190000Z&X-Amz-Expires=86400&X-Amz-Signature=0bc2c0618837a963fc8e5d8c2c341ce74b6aa33063ef3116256ed2a9a8ea6836&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-09_at_11.34.02_AM.png%22)
+![Module 2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/60d1f413-002c-436f-8e72-84ef8592ac2a/Screen_Shot_2020-09-09_at_11.34.02_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190000Z&X-Amz-Expires=86400&X-Amz-Signature=0bc2c0618837a963fc8e5d8c2c341ce74b6aa33063ef3116256ed2a9a8ea6836&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-09_at_11.34.02_AM.png%22)
 
 Inorder → LEFT → Root → Right
 
@@ -50,7 +50,7 @@ fml \iff fml \\ fml \space op\space fml \iff fml\\
 p \to q \iff \neg p \to \neg q
 $$
 
-![Module%201%2083acc9e1566046b786ead9dd0589c6f7/Screen_Shot_2020-09-12_at_9.47.20_AM.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/51757bdc-4bb4-486a-aabf-396c4bbc1ce4/Screen_Shot_2020-09-12_at_9.47.20_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190146Z&X-Amz-Expires=86400&X-Amz-Signature=6296a338ccb8c0c2f53524769b1ac7d891d3c29fb9fd5eb88459aed7f0c0e1b2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-12_at_9.47.20_AM.png%22)
+![Module 2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/51757bdc-4bb4-486a-aabf-396c4bbc1ce4/Screen_Shot_2020-09-12_at_9.47.20_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190146Z&X-Amz-Expires=86400&X-Amz-Signature=6296a338ccb8c0c2f53524769b1ac7d891d3c29fb9fd5eb88459aed7f0c0e1b2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-12_at_9.47.20_AM.png%22)
 
 ---
 
