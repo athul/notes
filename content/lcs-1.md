@@ -50,8 +50,6 @@ fml \iff fml \\ fml \space op\space fml \iff fml\\
 p \to q \iff \neg p \to \neg q
 $$
 
-![Module 2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/51757bdc-4bb4-486a-aabf-396c4bbc1ce4/Screen_Shot_2020-09-12_at_9.47.20_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190146Z&X-Amz-Expires=86400&X-Amz-Signature=6296a338ccb8c0c2f53524769b1ac7d891d3c29fb9fd5eb88459aed7f0c0e1b2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-12_at_9.47.20_AM.png%22)
-
 ---
 
 Sep 16, 2020 
@@ -80,7 +78,6 @@ Let S = ${A_1,...}$ be a set of formulas and let $\mathscr{P}_S =\cup_i \mathscr
 is, $\mathscr{P}_S$ is the set of all the atoms that appear in the formulas of $S$. An interpretation
 for $S$ is a function $\mathscr{I}_S:\mathscr{P}_S\mapsto\{T,F\}$. For any $A_i\in S,v_{\mathscr{I}_S}(A_i)$
 
-![Module%201%2083acc9e1566046b786ead9dd0589c6f7/Screen_Shot_2020-09-17_at_1.03.06_PM.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c472ec75-54de-41c8-b057-845e13d2780e/Screen_Shot_2020-09-17_at_1.03.06_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200920%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200920T190358Z&X-Amz-Expires=86400&X-Amz-Signature=9fe9b698f99aece8013430c6ee1b7372b4a9c1076c3cf53b5ff0a1047eaeceea&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2020-09-17_at_1.03.06_PM.png%22)
 
 ### Logical Equivalence
 

@@ -1,6 +1,6 @@
 ---
 date: "2020-09-21T15:22:51+05:30"
-title: "Discrete Computational Structures - Module 1"
+title: "S3-DCS-Module 1"
 tags: ["College","Notes"]
 ---
 # Set Theory

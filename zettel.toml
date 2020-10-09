@@ -1,4 +1,4 @@
-description = "Hello World. This is my zettel notebook"
-site_name = "My Zettel"
+description = "Athul's Digital Garden"
+site_name = "Gardenia"
 pygmentsstyle="monokai"
-site_prefix="notes"
+

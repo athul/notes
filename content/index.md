@@ -1,21 +1,12 @@
 ---
 title: "Index"
 ---
+### Notes
 
-# Contents
+[[graph-mod1]]
+[[lcs-1]]
+[[dcs-1]]
 
-## Graph Theory
-
-- [[graph-mod1]]
-
-## Logic for CS
-
-- [[lcs-1]]
-
-## Graph Theory
-
-- [[graph-mod1]]
-
-## Discrete Computational Structures
-
-- [[dcs-1]]
+### Code 
+[[golang]]
+[[goroutines]]
