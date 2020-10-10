@@ -1,16 +1,6 @@
 ---
 title: "Index"
 ---
-### Notes
+**Notes:** [[graph-mod1]] | [[lcs-1]]
 
-[[graph-mod1]]
-
-[[lcs-1]]
-
-[[dcs-1]]
-
-### Code
-
-[[golang]]
-
-[[goroutines]]
+**Code:** [[golang]] | [[goroutines]] | [[git-tags]]
