@@ -86,3 +86,7 @@ for $S$ is a function $\mathscr{I}_S:\mathscr{P}_S\mapsto\{T,F\}$. For any $A_i\
 ### Similarities b/w $\iff and \equiv$
 
 ### Substitution
+
+---
+
+[[graph-mod1]]

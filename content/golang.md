@@ -82,7 +82,7 @@ Instead of:
 
 ---
 
-![Data Types](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cf4190c8-53ea-4fd3-bb9f-9bbe16eed9cf/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20201008%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20201008T151430Z&X-Amz-Expires=86400&X-Amz-Signature=1ad35ab45b8e214a5da4c6bd57adc7fa1bd4cc40cba8a415bf72f59b80b6bb6a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+![Data Types](https://file.coffee/u/qGDrrMS6kv.png)
 
 ---
 
