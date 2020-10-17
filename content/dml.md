@@ -1,6 +1,7 @@
 ---
 date: "2020-10-16T13:48:48+05:30"
 title: "SQL Data Manipulation"
+tags: ["code","sql"]
 ---
 Learning SQL Queries
 
