@@ -1,7 +1,7 @@
 ---
 date: "2020-09-16T20:21:18+05:30"
 title: "Graph Theory Module 1"
-tags: ["college"]
+tags: ["College"]
 ---
 
 ### Theorem 1.1 - HandShaking Theorem

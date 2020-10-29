@@ -1,7 +1,7 @@
 ---
 date: "2020-10-12T10:52:17+05:30"
 title: "Config for Zettel local dev with Air"
-tags: ["code"]
+tags: ["code","other"]
 ---
 
 [Air](https://github.com/cosmtrek/air) is a **live reloading** solution for [[golang]] applications. It is easy to set up and configure. Here is my config for running zettel for writing notes and developing them.

@@ -1,7 +1,7 @@
 ---
 date: "2020-10-09T19:38:59+05:30"
-title: "AdBot Telegram Bot"
-tags: ["go","code"]
+title: "Adguard Telegram Bot"
+tags: ["go","code","other"]
 ---
 
 **Made with** [[golang]]
