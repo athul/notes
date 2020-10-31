@@ -1,6 +1,7 @@
 ---
 date: "2020-10-20T00:18:34+05:30"
 title: "Intro to SQlite"
+tags: ["db"]
 ---
 Check [[sql-dt]] and [[dml]]
 
