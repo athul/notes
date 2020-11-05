@@ -4,7 +4,9 @@ title: "SQL Data Types"
 tags: ["db"]
 ---
 
-## Data Types
+## Data Types 
+
+[[dml]]
 
 ### Numerical - Basic
 

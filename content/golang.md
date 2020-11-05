@@ -2,6 +2,7 @@
 date: "2020-10-08T20:40:38+05:30"
 title: "Go"
 tags: ["code","go"]
+summary: "Basic Go Programming details. With a notch of Running and Stuff"
 ---
 
 - Building `go build <file>.go`

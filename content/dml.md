@@ -2,6 +2,7 @@
 date: "2020-10-16T13:48:48+05:30"
 title: "SQL Data Manipulation"
 tags: ["db"]
+summary: "Basic DB manipulation Queries."
 ---
 Learning SQL Queries
 

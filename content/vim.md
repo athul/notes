@@ -3,7 +3,7 @@ date: "2020-11-01T00:44:56+05:30"
 title: "Some Vim Bindings"
 tags: ["terminal"]
 ---
-Some default Vim Bindings, after reading a book on how to use Vim 😁
+Some default Vim Bindings, after reading a book on how to use Vim :grin:
 
 ---
 Navigation:
