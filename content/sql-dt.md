@@ -1,7 +1,7 @@
 ---
-date: "2020-10-16T16:41:44+05:30"
 title: "SQL Data Types"
 tags: ["db"]
+summary: "Data Types in SQL. Numerical, Strings and Date types"
 ---
 
 ## Data Types 

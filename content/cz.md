@@ -1,5 +1,4 @@
 ---
-date: "2020-11-04T16:48:28+05:30"
 title: "Customized Zettel"
 tags: ["notes"]
 summary: "The Customizations done on the Base Source code of Zettel with
@@ -9,6 +8,7 @@ the current changes you see here"
 What are all the customizations done on this CodeBase compared with zettel's original one?
 Here is a Bullet List of the Items[^1]
 
+- Zettel is built with [[golang]] which made it a bit easier to hack on :smile:
 - Changed CSS
   - Removed wing.css and used [New CSS]
   - Dark mode(Auto) :zap:
@@ -21,7 +21,7 @@ Here is a Bullet List of the Items[^1]
 
 - Made the Graph more "Scrollable"
 - Added Tooltips to internal links
- - Used a Summary key in the Frontmatter to generate these
+  - Used a Summary key in the Frontmatter to generate these
 - Footnotes :leg:
 
 [^1]: Hehe This is a footnote.

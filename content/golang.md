@@ -1,7 +1,7 @@
 ---
 date: "2020-10-08T20:40:38+05:30"
 title: "Go"
-tags: ["code","go"]
+tags: ["go"]
 summary: "Basic Go Programming details. With a notch of Running and Stuff"
 ---
 
@@ -9,7 +9,7 @@ summary: "Basic Go Programming details. With a notch of Running and Stuff"
 - Running `go run <filename>`
 
 ---
-Now that we understand how to compile and run Go programs, let’s take a detailed look at the structure of Go’s program, specifically its packages:
+Now that we understand how to compile and run Go programs, let’s take a detailed look at the structure of Go’s program, specifically its pac``kages:
 
 ```go
 package main
@@ -19,7 +19,7 @@ import "fmt"
 func main () {
   fmt.Println("Hello World")
 }
-```
+````
 
 Go programs are read from top to down, left to right, so let’s focus on the first line `package main`. This line is called a *package declaration* and every Go program starts with one. The package declaration informs the compiler whether to create an executable or *library*.
 

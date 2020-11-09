@@ -1,7 +1,7 @@
 ---
 date: "2020-10-10T00:45:44+05:30"
 title: "Git Tags"
-tags: ["code","git"]
+tags: ["git"]
 ---
 
 ```bash

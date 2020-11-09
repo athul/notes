@@ -1,7 +1,7 @@
 ---
 date: "2020-10-08T20:19:52+05:30"
 title: "Goroutines"
-tags: ["code","go"]
+tags: ["go"]
 ---
 [[golang]]
 

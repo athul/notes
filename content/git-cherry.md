@@ -1,7 +1,8 @@
 ---
 date: "2020-10-10T11:45:43+05:30"
 title: "Git Cherry Pick"
-tags: ["code","git"]
+tags: ["git"]
+summary: "Git Cherrypicking which I learned at my first internship"
 ---
 
 The CherryPick Way:
