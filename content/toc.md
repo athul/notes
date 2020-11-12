@@ -1,12 +1,14 @@
 ---
-title: "Theory of Compution"
+title: "Theory of Computation"
 tags: ["college"]
 ---
+# Module 1
+
+---
+
 - Fundamental Couse of CS
 - Sciece as CS
 - Computation speed and related
-
----
 - FSM : Finite State Machine
 - CFL : Context Free Language
 - Turing Machine
