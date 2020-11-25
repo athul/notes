@@ -1,10 +1,9 @@
 ---
-date: "2020-11-01T00:44:56+05:30"
-title: "Some Vim Bindings"
+title: "Some Vim Commands"
 tags: ["terminal"]
 ---
 
-Some default Vim Bindings, after reading a book on how to use Vim :grin:
+Some default Vim Commands, after reading a book on how to use Vim :grin:
 
 ---
 
@@ -18,7 +17,9 @@ Navigation:
 ---
 
 - `x` → Deletes the Character under the Cursor
-- `.` → Repeats `x`
+- `.` → Repeats the Previous command
+- 'o' :right_arrow: will create a line below the cursor and go to `INSERT` mode.
+- <kbd>SHIFT+o</kbd> will create a line above the cursor and go to `INSERT` mdoe
 - <kbd>Ctrl+r</kbd> to redo
 - `u` → undos `x`
 - `~` will change the case. Use `--VISUAL--` to select the character(s)
@@ -54,3 +55,7 @@ To search and replace on a single line we can use the `:s` command
   - i (for ignoring the case)
 
 To replace all the occureneces in the file we can use `:%s` instead of `:s`
+
+---
+
+There is a [[vim-terminal]]
