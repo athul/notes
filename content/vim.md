@@ -1,6 +1,6 @@
 ---
 title: "Some Vim Commands"
-tags: ["terminal"]
+tags: ["terminal","vim"]
 ---
 
 Some default Vim Commands, after reading a book on how to use Vim :grin:
@@ -45,7 +45,7 @@ We can use the `/{search}` method to find the word and use the motion `cgn` to c
 
 To search and replace on a single line we can use the `:s` command
 
-```vim
+```viml
 :s/{search_pattern}/{replace_pattern}/{options}
 ```
 
@@ -58,4 +58,25 @@ To replace all the occureneces in the file we can use `:%s` instead of `:s`
 
 ---
 
-There is a [[vim-terminal]]
+## Using Terminal in NeoVim
+
+> Learn more about [[vim_terminal]]
+
+Thanks to my friend [Andrew Bastin](https://github.com/AndrewBastin) for Suggesting me [Floaterm](https://github.com/voldikss/vim-floaterm), I use Floaterm Now.
+
+![Imgur](https://i.imgur.com/EQZeVNy.png)
+
+A Floating terminal inside NeoVim. How cool is That??? As mentioned in "[[vim_terminal]]" the `NORMAL` mode Keybinding is a tad hard, so as a _noob_ vim user, I added the binding to `ESC` key. It's easier for me that way. I also remapped a few things to get terminal a bit easier from the `NORMAL` mode.
+```viml
+nmap fn :FloatermNew zsh<CR>
+nmap ft :FloatermToggle<CR>
+nmap fp :FloatermNext<CR>
+nmap fk :FloatermKill<CR>
+nmap fo :FloatermPrev<CR>
+```
+
+For remapping the command from the terminal I used this :point_down:
+
+```viml
+tnoremap <ESC> <C-\><C-n>
+```

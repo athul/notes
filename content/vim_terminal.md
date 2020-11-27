@@ -1,7 +1,7 @@
 ---
 title: "Terminal in NeoVim"
 summary: "The Terminal fetaure in Neovim"
-tags: ["vim","code"]
+tags: ["vim","terminal"]
 ---
 
 I use Neovim for my editing and a feature I miss in VsCode was the terminal. But I found that there is a terminal feature in neovim. It's quite usable and slowing reducing my dependency on VsCode for editing.
