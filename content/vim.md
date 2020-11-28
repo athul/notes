@@ -1,6 +1,7 @@
 ---
 title: "Some Vim Commands"
 tags: ["terminal","vim"]
+summary: "My Vim-istham on Vim"
 ---
 
 Some default Vim Commands, after reading a book on how to use Vim :grin:
@@ -18,11 +19,11 @@ Navigation:
 
 - `x` → Deletes the Character under the Cursor
 - `.` → Repeats the Previous command
-- 'o' :right_arrow: will create a line below the cursor and go to `INSERT` mode.
-- <kbd>SHIFT+o</kbd> will create a line above the cursor and go to `INSERT` mdoe
+- `o` :point_right:  will create a line below the cursor and go to `INSERT` mode.
+- `O` will create a line above the cursor and go to `INSERT` mode
 - <kbd>Ctrl+r</kbd> to redo
 - `u` → undos `x`
-- `~` will change the case. Use `--VISUAL--` to select the character(s)
+- `~` will change the case of the letter under the Cursor
 - `dd` → Deletes current line
 - `>G` → ↑s indendations till EOF
 - `<G` → ↓s the indendation of the file
@@ -30,6 +31,9 @@ Navigation:
 - `d<n>w` will delete n words in the line
   - `d2w` will delete 2 words
   - `d7w` will delete 7 words
+- `y` to copy the items under the cursor.
+- `d` to cut the items under the cursor
+- `p` to paste items after the cursor and `P` to paste items before the cursor 
 
 ---
 
@@ -80,3 +84,6 @@ For remapping the command from the terminal I used this :point_down:
 ```viml
 tnoremap <ESC> <C-\><C-n>
 ```
+## Using free Real Estate
+
+Check out [[vim_tabs]]
