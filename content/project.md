@@ -16,16 +16,17 @@ tags: ["code","projects","other"]
 
 ### I'll do it Phase
 - Imagine how I'd want the final result
-- Iterate on implementations. Which Language and which framework. Amount of laziness required.
-- Start to Write code till the idea starts to get in shape
+- Iterate on implementations. Which Language and which framework.
+- Ease of Writing.
+- Start to Write code till it gets in shape
 - Write more code to prettify it
 - Show off for my current progress
 - Get FeedBack
 - Write comments(Very very important) in code/annotate code
 - Repeat 2 for any new features
-- Writing about it.
+- Blog on it.
 
 
-TL;DR: There isn't a golden rule to kick something off. Imagine how it'll be finally and work on that. 
+TL;DR: There isn't a golden rule to kick something off. I picture how it'll be finally and work on that. 
 
 
