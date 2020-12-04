@@ -1,5 +1,5 @@
 ---
-title: "Theory of Computation"
+title: "Theory of Computation | Module 1"
 tags: ["college"]
 summary: "Notes on Theory of Computation"
 ---
@@ -193,6 +193,17 @@ Which gives us the DFA, where `C` is the dead state
 
 ![DFA-2](https://i.imgur.com/b2TuDKV.png)
 
-_Example 2_: `L={Set of all strings over(0,1) that ends with 1}`
 
-$\Sigma=\{0,1\}$
+## Minimization of DFA
+
+- To obtain the minimal version of any DFA which consists of the min number of states possible
+
+- Equivalent states can be combined
+- Two states can be equivalent if,
+$\delta(A,X) \to F$ and $\delta(A,X) \nrightarrow F$ OR $\delta(B,X) \to F$ and $\delta(B,X) \nrightarrow F$
+
+> Where `X` is any i/p string
+
+*If $|X| = n$ the A and B are said to be `n` equivalent*
+
+> Refer https://youtu.be/0XaGAkY09Wc for better Idea :smile:
