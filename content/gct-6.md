@@ -27,3 +27,12 @@ $2^{b-1}< n \leq 2^{b}$
 - Number vertexes from $1 - n$
 - Repr as a linear array
 - $n(1+d_{avg})$ is the storage requirements
+
+---
+
+## Algorithms for Connectedness and Components
+
+- Uses fusion of adjacent vertices
+
+1. We start with some vertice in the graph and fuse all vertices that are adjacent to it
+2. 
