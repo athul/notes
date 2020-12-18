@@ -42,3 +42,21 @@ Two logical statements involving predicates and quantifiers are said to be equiv
 There are two impoortant equivalences involving quantifiers
 - $\forall x(P(x) \land Q(x)) \equiv \forall x P(x) \land \forall xQ(x)$
 - $\exist x(P(x) \lor Q(x)) \equiv \exist x P(x) \lor \exist x Q(x)$
+
+## Semantic Tableaux
+1. $\exist x\ (p_{x} \land q_{x}) , \forall x(p_{x} \to \neg q_{x})$ 
+
+Check whether they are consistent ot each other.
+
+Ans: 
+1. $\exist x (P_{x} \land q_{x})$
+2. $\forall x (p_{x} \to \neg q_{x})$
+
+First Eliminate statements with $\exist x$
+
+3. $p_{a} \land q_{x}$ (Here branch is $p_{a} \land q_{a} \to \textcolor{orange}{p_{a}} \And \textcolor{orange}{q_{a}}$)
+4. $p_{a} \to \neg q_{a}$  
+$\swarrow \ \ \ \ \ \  \searrow$   
+5. $\neg p_{a} \textcolor{red}{\times}\ \ \ \ \ \ \neg q_{a} \textcolor{red}{\times}$
+
+ie, means $\exist x (p_{x} \land q_{x})$ and $\forall x (p_{x} \to q_{x})$ is inconsistent to each other.
