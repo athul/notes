@@ -44,7 +44,7 @@ There are two impoortant equivalences involving quantifiers
 - $\exist x(P(x) \lor Q(x)) \equiv \exist x P(x) \lor \exist x Q(x)$
 
 ## Semantic Tableaux
-1. $\exist x\ (p_{x} \land q_{x}) , \forall x(p_{x} \to \neg q_{x})$ 
+(Q)1. $\exist x\ (p_{x} \land q_{x}) , \forall x(p_{x} \to \neg q_{x})$ 
 
 Check whether they are consistent ot each other.
 
@@ -60,3 +60,49 @@ $\swarrow \ \ \ \ \ \  \searrow$
 5. $\neg p_{a} \textcolor{red}{\times}\ \ \ \ \ \ \neg q_{a} \textcolor{red}{\times}$
 
 ie, means $\exist x (p_{x} \land q_{x})$ and $\forall x (p_{x} \to q_{x})$ is inconsistent to each other.
+
+----
+
+$Q_{2}$: $\exist_{x} (P_{x} \land Q_{x}), \exist_{x} (P_{x} \lor Q_{x}), \neg \exist_{x} P_{x}$ check whether consistent or not.  
+
+1. $\exist_{x} (P_{x} \land Q_{x})$
+2. $\exist_{x} (P_{x} \lor Q_{x})$
+3. $\neg \exist_{x} P_{x} = \forall_{x} \neg P_{x}$
+4. $P_{a} \land Q_{a}$
+5. $P_{b} \lor Q_{b}$
+6. $\neg P_{b}$  
+$\swarrow \ \ \searrow$  
+7. $P_{b} (\textcolor{red}{\times}) \ | \ Q_{b} (\textcolor{green}{\checkmark})$
+
+$\therefore$ This 3 statements are consistent to each other at $\implies \ \ \ q_{b} = T, \neg P_{b} = T, Q_{a} = T, P_{a}=T$
+
+---
+
+$Q_{3}$:  Consider the following sentences,
+1. $\forall_{x} \forall_{y} \forall_{z} \bigg[R(x,y) \land R(y,z) \to R(x,z) \bigg]$
+2. $\forall_{x} \forall_{y} \bigg[R(x,y) \to R(y,x) \bigg]$
+3. $\forall_{x} \exist_{y} \bigg[R(x,y) \bigg]$
+4. $\forall_{x} \bigg[ R(x,y) \bigg]$
+
+Show that ${1,2,3} \models {4}$,  
+
+> ($\models$ is semantic/logical consequence)
+
+Ans: Given $\forall_{x} \bigg[ R(x,x) \bigg]$  
+First we _negate_ as usual.
+
+$\neg \forall_{x} \Big(R(x,x)\Big)$  
+
+5. $\exist_{x} \neg \Big(R(x,x) \Big)$
+6. $\neg R(a,a) \textcolor{red}{\times} \ \ \implies$ (from 5)
+7. $\exist_{y} R(a,y) \ \ \ \implies$ (3, Universal Instantiation)
+8. $R(a,b) \ \textcolor{red}{\times} \ \ \ \ \implies$ (7, Existential Instantiation)
+9. $R(a,b) \to R(b,a)\ \ \ \ \implies$ (substituted, x|a $\And$ y|b in 2)  
+
+$\neg R(a,b) \textcolor{red}{\times} \ \ R(b,a) \textcolor{red}{\times}$
+
+10. From $\Bigm(x|a, y|b, z|a \ in\  \small(1 \small)\Bigm)$
+
+![ST-2](https://i.imgur.com/fO8gmvW.png)
+
+This means that the negation of the conclusion is unsatisfiable, ie the conclusion has to be valid
