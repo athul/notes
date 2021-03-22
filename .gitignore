@@ -2,3 +2,4 @@
 run.go
 dist/
 tmp/
+*.mod
