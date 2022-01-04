@@ -1,0 +1,241 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="Basic Go Programming details. With a notch of Running and Stuff">
+    <title>Go</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Go</h2>
+</section>
+<section class="container">
+    <ul>
+<li>Building <code>go build &lt;file&gt;.go</code></li>
+<li>Running <code>go run &lt;filename&gt;</code></li>
+</ul>
+<hr>
+<p>Now that we understand how to compile and run Go programs, let’s take a detailed look at the structure of Go’s program, specifically its pac``kages:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span> () {
+  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello World&#34;</span>)
+}
+</pre><p>Go programs are read from top to down, left to right, so let’s focus on the first line <code>package main</code>. This line is called a <em>package declaration</em> and every Go program starts with one. The package declaration informs the compiler whether to create an executable or <em>library</em>.</p>
+<hr>
+<pre style="color:#f8f8f2;background-color:#272822">
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span> () {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello World&#34;</span>)
+}
+</pre><p>There are a few things happening in our <code>main</code> function. We’re introduced to how <em>functions</em> (reusable blocks of code) are defined/created in Go. The basic syntax being:</p>
+<ul>
+<li>The <code>func</code> keyword denotes the start of a function declaration.</li>
+<li><code>func</code> is followed by the name of the function.</li>
+<li>After name is a pair of parentheses <code>()</code> and a set of curly braces <code>{}</code>.</li>
+</ul>
+<p>Inside the function block <code>{}</code>, we indent the code inside using a tab. Then we access the <code>fmt</code> package and call its <code>Println</code> (stands for print line) function to print the message <code>&quot;Hello World&quot;</code> to the terminal.</p>
+<p>Now let’s take a second and realize that while we defined our <code>main</code> function, we never explicitly told <code>main</code> to run its block of code. In other programming languages, functions have to be called, i.e. told to run its code. However, a <code>main</code> function is special, a file that has a <code>package main</code> declaration will automatically run the <code>main</code> function!</p>
+<p>This nuance becomes more important as we build more complex programs. In the meanwhile, let’s finish up our program!</p>
+<hr>
+<p>To import multiple packages we can add multiple <code>import</code> statements, like so:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;package1&#34;</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;package2&#34;</span>
+</pre><p>Or we can use a single <code>import</code> with a pair of parentheses that contain our packages:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#f92672">import</span> (
+  <span style="color:#e6db74">&#34;package1&#34;</span>
+  <span style="color:#e6db74">&#34;package2&#34;</span>
+)
+</pre><p>Notice, when using an <code>import</code> with parentheses, we’re not separating each package with a comma. Instead, each package is on a different line.</p>
+<p>We can also provide an <em>alias</em> to a package by including the alias name before the file. Including an alias will make it easier to refer to the package without typing out the full package name:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#f92672">import</span> (
+  <span style="color:#a6e22e">p1</span> <span style="color:#e6db74">&#34;package1&#34;</span>
+  <span style="color:#e6db74">&#34;package2&#34;</span>
+)
+</pre><p>In the example above we’ve aliased <code>package1</code> as <code>p1</code> and now we can call functions from <code>package1</code> by using <code>p1</code> like:</p>
+<p><code>$ p1.SampleFunc()</code></p>
+<p>Instead of:</p>
+<p><code>$ package1.SampleFunc()</code></p>
+<hr>
+<p><img src="https://file.coffee/u/qGDrrMS6kv.png" alt="Data Types"></p>
+<hr>
+<p>There is a way to declare a variable without explicitly stating its type using the short declaration <code>:=</code> operator. We might use the <code>:=</code> operator if we know what value we want our variable to store when creating it. For instance:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#a6e22e">nuclearMeltdownOccurring</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>
+<span style="color:#a6e22e">radiumInGroundWater</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4.521</span>
+<span style="color:#a6e22e">daysSinceLastWorkplaceCatastrophe</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">externalMessage</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;Everything is normal. Keep calm and carry on.&#34;</span>
+</pre><p>Above, we were able to define a <code>bool</code>, a <code>float</code>, an <code>int</code>, and a <code>string</code> without specifying the type. We used the <code>:=</code> to create a variable and infer its type based on the value provided. Floats created in this way are of type <code>float64</code>. Integers created in this way are either <code>int32</code> or <code>int64</code></p>
+
+</section>
+    <section class="container link">
+        <h3>Connections</h3>
+            <ul>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/adbot.html" >Adguard Telegram Bot</a>
+                                </li>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/air-zettel.html" >Config for Zettel local dev with Air</a>
+                                </li>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/cz.html" >Customized Zettel</a>
+                                </li>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/goroutines.html" >Goroutines</a>
+                                </li>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/open-browser.html" >Open URL from Terminal</a>
+                                </li>
+            </ul>
+    </section>
+    <section class="container tags">
+            <a href="/notes/tags/go.html"><button class='outline'>go</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>

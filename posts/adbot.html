@@ -1,0 +1,331 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="Random Scribblings on Learned Stuff from College, Internet and Other Places">
+    <title>Adguard Telegram Bot</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Adguard Telegram Bot</h2>
+</section>
+<section class="container">
+    <p><strong>Made with</strong> <a data-balloon-length="large" aria-label="Basic Go Programming details. With a notch of Running and Stuff" class="Innerbacklink" href="/notes/posts/golang.html" data-balloon-pos="up">[[Go]]</a></p>
+<p>Adbot's REST API gives the stats on the DNS queries and Blocked Queries. I'm relucatant to check it at-times, so build a telegram bot to send me the statistics over telegram with an ASCII graph and a pie chart image of the domains blocked with the number of times.</p>
+<p>Here is the Code:</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+	<span style="color:#e6db74">&#34;log&#34;</span>
+	<span style="color:#e6db74">&#34;net/http&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+
+	<span style="color:#e6db74">&#34;github.com/guptarohit/asciigraph&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/wcharczuk/go-chart&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/yanzay/tbot&#34;</span>
+)
+
+<span style="color:#75715e">// Stats represents the data from Adguard as JSON
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Stats</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#75715e">// Average Processing Time for DNS Queries
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">ProcessingTime</span> <span style="color:#66d9ef">float64</span> <span style="color:#e6db74">`json:&#34;avg_processing_time&#34;`</span>
+	<span style="color:#75715e">// When the Filters did the Job. The slice consists of 24 elements(24 hours)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// Each item represents the Blockings of Each Hour
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">BlockedFilter</span> []<span style="color:#66d9ef">float64</span> <span style="color:#e6db74">`json:&#34;blocked_filtering&#34;`</span>
+	<span style="color:#75715e">// Number of DNSQueries received by Adguard.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//The slice consists of 24 elements(24 hours)
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// Each element is the queries received in an hour
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">DNSQueries</span>        []<span style="color:#66d9ef">float64</span>            <span style="color:#e6db74">`json:&#34;dns_queries&#34;`</span>
+	<span style="color:#a6e22e">BlockedFilterNum</span>  <span style="color:#66d9ef">float64</span>              <span style="color:#e6db74">`json:&#34;num_blocked_filtering&#34;`</span>
+	<span style="color:#a6e22e">DNSQueriesNum</span>     <span style="color:#66d9ef">float64</span>              <span style="color:#e6db74">`json:&#34;num_dns_queries&#34;`</span>
+	<span style="color:#a6e22e">PT</span>                <span style="color:#66d9ef">float64</span>              <span style="color:#e6db74">`json:&#34;num_replaced_parental&#34;`</span>
+	<span style="color:#a6e22e">NumSB</span>             <span style="color:#66d9ef">float64</span>              <span style="color:#e6db74">`json:&#34;num_replaced_safebrowsing&#34;`</span>
+	<span style="color:#a6e22e">NumSS</span>             <span style="color:#66d9ef">float64</span>              <span style="color:#e6db74">`json:&#34;num_replaced_safesearch&#34;`</span>
+	<span style="color:#a6e22e">ReplacedPT</span>        []<span style="color:#66d9ef">float64</span>            <span style="color:#e6db74">`json:&#34;replaced_parental&#34;`</span>
+	<span style="color:#a6e22e">ReplacedSB</span>        []<span style="color:#66d9ef">float64</span>            <span style="color:#e6db74">`json:&#34;replaced_safebrowsing&#34;`</span>
+	<span style="color:#a6e22e">TimeUnits</span>         <span style="color:#66d9ef">string</span>               <span style="color:#e6db74">`json:&#34;time_units&#34;`</span>
+	<span style="color:#a6e22e">TopBlockedDomains</span> []<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">float64</span> <span style="color:#e6db74">`json:&#34;top_blocked_domains&#34;`</span>
+	<span style="color:#a6e22e">TopClients</span>        []<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">float64</span> <span style="color:#e6db74">`json:&#34;top_clients&#34;`</span>
+	<span style="color:#a6e22e">TopQueriedDomains</span> []<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">float64</span> <span style="color:#e6db74">`json:&#34;top_queried_domains&#34;`</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+	<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewRequest</span>(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#e6db74">&#34;http://127.0.0.1/control/stats&#34;</span>, <span style="color:#66d9ef">nil</span>)
+
+	<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#e6db74">&#34;cookie&#34;</span>, <span style="color:#e6db74">&#34;agh_session=&lt;some sha string&gt;&#34;</span>)
+
+	<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultClient</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+	}
+
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+	<span style="color:#a6e22e">body</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">Body</span>)
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stats</span> <span style="color:#a6e22e">Stats</span>
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">body</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">stats</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+	}
+	<span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">sendTGMessage</span>((<span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">BlockedFilterNum</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">DNSQueriesNum</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>)
+	<span style="color:#a6e22e">stats</span>.<span style="color:#a6e22e">pieGrph</span>()
+}
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Stats</span>) <span style="color:#a6e22e">generateGraph</span>(<span style="color:#a6e22e">tp</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Graph Generated&#34;</span>)
+	<span style="color:#a6e22e">graphof</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>][]<span style="color:#66d9ef">float64</span>{
+		<span style="color:#e6db74">&#34;DNS&#34;</span>: <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">DNSQueries</span>,
+		<span style="color:#e6db74">&#34;BLK&#34;</span>: <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">BlockedFilter</span>,
+	}
+	<span style="color:#a6e22e">caption</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
+		<span style="color:#e6db74">&#34;DNS&#34;</span>: <span style="color:#e6db74">&#34;Number of DNS Queries&#34;</span>,
+		<span style="color:#e6db74">&#34;BLK&#34;</span>: <span style="color:#e6db74">&#34;Number of Blocked Queries&#34;</span>,
+	}
+	<span style="color:#a6e22e">graph</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">asciigraph</span>.<span style="color:#a6e22e">Plot</span>(<span style="color:#a6e22e">graphof</span>[<span style="color:#a6e22e">tp</span>], <span style="color:#a6e22e">asciigraph</span>.<span style="color:#a6e22e">Height</span>(<span style="color:#ae81ff">10</span>), <span style="color:#a6e22e">asciigraph</span>.<span style="color:#a6e22e">Caption</span>(<span style="color:#a6e22e">caption</span>[<span style="color:#a6e22e">tp</span>]))
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">graph</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Stats</span>) <span style="color:#a6e22e">sendTGMessage</span>(<span style="color:#a6e22e">percent</span> <span style="color:#66d9ef">float64</span>) {
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Message Sent...&#34;</span>)
+	<span style="color:#a6e22e">message</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;Total DNS Queries : %.f\n\nDNS Queries Blocked : %.f\n\n-----\n\nPercent of Queries Blocked: %.2f%%\n\n-----\n\nDNS Query Graph :\n\n`%s`\n\n-----\n\nBlocked Graph:\n\n`%s`\n&#34;</span>, <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">DNSQueriesNum</span>, <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">BlockedFilterNum</span>, <span style="color:#a6e22e">percent</span>, <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">generateGraph</span>(<span style="color:#e6db74">&#34;DNS&#34;</span>), <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">generateGraph</span>(<span style="color:#e6db74">&#34;BLK&#34;</span>))
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tbot</span>.<span style="color:#a6e22e">NewClient</span>(<span style="color:#e6db74">&#34;&lt;telegram_bot_token&gt;&#34;</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultClient</span>, <span style="color:#e6db74">&#34;https://api.telegram.org&#34;</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">SendMessage</span>(<span style="color:#e6db74">&#34;&lt;telegram_chat_id&gt;&#34;</span>, <span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">tbot</span>.<span style="color:#a6e22e">OptParseModeMarkdown</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;unable to send message: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Stats</span>) <span style="color:#a6e22e">pieGrph</span>() {
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Pie Graph Generated and Image Send&#34;</span>)
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">chartValues</span> []<span style="color:#a6e22e">chart</span>.<span style="color:#a6e22e">Value</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">TopBlockedDomains</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">TopBlockedDomains</span>[<span style="color:#a6e22e">i</span>] {
+			<span style="color:#a6e22e">values</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">chart</span>.<span style="color:#a6e22e">Value</span>{<span style="color:#a6e22e">Label</span>: <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%.f:%s&#34;</span>, <span style="color:#a6e22e">v</span>, <span style="color:#a6e22e">k</span>), <span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">v</span>}
+			<span style="color:#a6e22e">chartValues</span> = append(<span style="color:#a6e22e">chartValues</span>, <span style="color:#a6e22e">values</span>)
+		}
+	}
+	<span style="color:#a6e22e">pie</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">chart</span>.<span style="color:#a6e22e">PieChart</span>{
+		<span style="color:#a6e22e">Width</span>:  <span style="color:#ae81ff">512</span>,
+		<span style="color:#a6e22e">Height</span>: <span style="color:#ae81ff">512</span>,
+		<span style="color:#a6e22e">Values</span>: <span style="color:#a6e22e">chartValues</span>,
+	}
+	<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#e6db74">&#34;output.png&#34;</span>)
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">Close</span>()
+	<span style="color:#a6e22e">pie</span>.<span style="color:#a6e22e">Render</span>(<span style="color:#a6e22e">chart</span>.<span style="color:#a6e22e">PNG</span>, <span style="color:#a6e22e">f</span>)
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tbot</span>.<span style="color:#a6e22e">NewClient</span>(<span style="color:#e6db74">&#34;&lt;telegram_bot_token&gt;&#34;</span>, <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">DefaultClient</span>, <span style="color:#e6db74">&#34;https://api.telegram.org&#34;</span>)
+	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">SendPhotoFile</span>(<span style="color:#e6db74">&#34;&lt;telegram_chat_id&gt;&#34;</span>, <span style="color:#e6db74">&#34;output.png&#34;</span>, <span style="color:#a6e22e">tbot</span>.<span style="color:#a6e22e">OptCaption</span>(<span style="color:#e6db74">&#34;PieGraph of Blocked Domains&#34;</span>))
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+	}
+}
+</pre><p>The only thing to take care of this is to get the <code>agh_session</code> token. It is static and desn't change with the server, so get it once and use indefinetely.</p>
+<p>Here is the output:</p>
+<pre><code>
+Total DNS Queries : 8946
+
+DNS Queries Blocked : 1949
+
+-----
+
+Percent of Queries Blocked: 21.79%
+
+-----
+
+DNS Query Graph :
+
+ 1323 ┼╮            ╭╮
+ 1191 ┤│            │╰╮
+ 1058 ┤│           ╭╯ │
+  926 ┤│╭╮         │  │
+  794 ┤│││         │  │
+  662 ┤╰╯│        ╭╯  ╰╮
+  529 ┤  ╰╮       │    │
+  397 ┤   │      ╭╯    │
+  265 ┤   │      │     │     ╭
+  132 ┤   │      │     │     │
+    0 ┤   ╰──────╯     ╰─────╯
+        Number of DNS Queries
+
+-----
+
+Blocked Graph:
+
+ 384 ┼            ╭╮╭╮
+ 346 ┤            │╰╯│
+ 307 ┤            │  │
+ 269 ┤            │  │
+ 230 ┤            │  │
+ 192 ┼╮           │  │
+ 154 ┤╰─╮         │  ╰╮
+ 115 ┤  │         │   │
+  77 ┤  │         │   │
+  38 ┤  ╰╮      ╭─╯   │     ╭
+   0 ┤   ╰──────╯     ╰─────╯
+      Number of Blocked Queries
+</code></pre>
+<p>Pie Graph:</p>
+<p><img src="https://file.coffee/u/Z1UJ_lTddE.jpeg" alt=""></p>
+
+</section>
+    <section class="container link">
+        <h3>Connections</h3>
+            <ul>
+                                <li>
+                                <a class="Innerbacklink" href="/notes/posts/nih.html" >Not Invented Here</a>
+                                </li>
+            </ul>
+    </section>
+    <section class="container tags">
+            <a href="/notes/tags/go.html"><button class='outline'>go</button></a>
+            <a href="/notes/tags/other.html"><button class='outline'>other</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,260 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="Notes for Predicate Logic in Computational Logic">
+    <title>Logic for CS - Predicate Logic</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Logic for CS - Predicate Logic</h2>
+</section>
+<section class="container">
+    <h2>Predicate</h2>
+<p>These are the statements involving variables which are neither true or false until or unless the values are specified</p>
+<p>In predicate logic, a statement is divided into two parts</p>
+<ol>
+<li>Subject</li>
+<li>Predicate</li>
+</ol>
+<p>Usually we denote such statements using shorthand notation.</p>
+<p>Example: &quot;<span class="math inline">\(X\)</span> is greater than 3&quot; = <span class="math inline">\(G\{X\}\)</span> where,</p>
+<ul>
+<li><span class="math inline">\(G()\)</span> denotes the predicate &quot;is greater than 3&quot;</li>
+<li><span class="math inline">\(X\)</span> denotes subject</li>
+</ul>
+<h2>Quantifiers</h2>
+<p>These are words that refer to quantities such as 'some' or 'all'. It tells for how many elements a given predicate is true.</p>
+<p>Example: <em>all,some,many,none,few etc...</em> | &quot;Can I have some water?&quot;</p>
+<h3>Types of quantifiers</h3>
+<ol>
+<li>Universal Quantifier ( <span class="math inline">\(\forall\)</span> )</li>
+<li>Existential Quantifier ( <span class="math inline">\(\exist\)</span> )</li>
+</ol>
+<p>Example 1:
+Let <span class="math inline">\(p(x)\)</span> be a statement, <span class="math inline">\(x+1 > x\)</span>. Here <span class="math inline">\(P(x)\)</span> is true for all positive integer <span class="math inline">\(x\)</span>, ie <span class="math inline">\(\forall_{x} P(x)\)</span>_</p>
+<p>Example 2:
+Let <span class="math inline">\(Q(x)\)</span> br a statement <span class="math inline">\(x<2\)</span></p>
+<ul>
+<li><span class="math inline">\(Q(1): 1\ < \ 2\)</span> (<strong>True</strong>)</li>
+<li><span class="math inline">\(Q(2): 2 \ <\ 2\)</span> (<strong>False</strong>)</li>
+</ul>
+<p><span class="math inline">\(\therefore\)</span> there exist some <span class="math inline">\(x\)</span> for which <span class="math inline">\(Q(x)\)</span> is true. <span class="math inline">\(\to \exist x P(x)\)</span></p>
+<h2>Logical Equivalences</h2>
+<p>Two logical statements involving predicates and quantifiers are said to be equivalent if and only if they have the same truth value in all the possible cases.</p>
+<p>There are two impoortant equivalences involving quantifiers</p>
+<ul>
+<li><span class="math inline">\(\forall x(P(x) \land Q(x)) \equiv \forall x P(x) \land \forall xQ(x)\)</span></li>
+<li><span class="math inline">\(\exist x(P(x) \lor Q(x)) \equiv \exist x P(x) \lor \exist x Q(x)\)</span></li>
+</ul>
+<h2>Semantic Tableaux</h2>
+<p>(Q)1. <span class="math inline">\(\exist x\ (p_{x} \land q_{x}) , \forall x(p_{x} \to \neg q_{x})\)</span></p>
+<p>Check whether they are consistent ot each other.</p>
+<p>Ans:</p>
+<ol>
+<li><span class="math inline">\(\exist x (P_{x} \land q_{x})\)</span></li>
+<li><span class="math inline">\(\forall x (p_{x} \to \neg q_{x})\)</span></li>
+</ol>
+<p>First Eliminate statements with <span class="math inline">\(\exist x\)</span></p>
+<ol start="3">
+<li><span class="math inline">\(p_{a} \land q_{x}\)</span> (Here branch is <span class="math inline">\(p_{a} \land q_{a} \to \textcolor{orange}{p_{a}} \And \textcolor{orange}{q_{a}}\)</span>)</li>
+<li><span class="math inline">\(p_{a} \to \neg q_{a}\)</span><br>
+<span class="math inline">\(\swarrow \ \ \ \ \ \  \searrow\)</span></li>
+<li><span class="math inline">\(\neg p_{a} \textcolor{red}{\times}\ \ \ \ \ \ \neg q_{a} \textcolor{red}{\times}\)</span></li>
+</ol>
+<p>ie, means <span class="math inline">\(\exist x (p_{x} \land q_{x})\)</span> and <span class="math inline">\(\forall x (p_{x} \to q_{x})\)</span> is inconsistent to each other.</p>
+<hr>
+<p><span class="math inline">\(Q_{2}\)</span>: <span class="math inline">\(\exist_{x} (P_{x} \land Q_{x}), \exist_{x} (P_{x} \lor Q_{x}), \neg \exist_{x} P_{x}\)</span> check whether consistent or not.</p>
+<ol>
+<li><span class="math inline">\(\exist_{x} (P_{x} \land Q_{x})\)</span></li>
+<li><span class="math inline">\(\exist_{x} (P_{x} \lor Q_{x})\)</span></li>
+<li><span class="math inline">\(\neg \exist_{x} P_{x} = \forall_{x} \neg P_{x}\)</span></li>
+<li><span class="math inline">\(P_{a} \land Q_{a}\)</span></li>
+<li><span class="math inline">\(P_{b} \lor Q_{b}\)</span></li>
+<li><span class="math inline">\(\neg P_{b}\)</span><br>
+<span class="math inline">\(\swarrow \ \ \searrow\)</span></li>
+<li><span class="math inline">\(P_{b} (\textcolor{red}{\times}) \ | \ Q_{b} (\textcolor{green}{\checkmark})\)</span></li>
+</ol>
+<p><span class="math inline">\(\therefore\)</span> This 3 statements are consistent to each other at <span class="math inline">\(\implies \ \ \ q_{b} = T, \neg P_{b} = T, Q_{a} = T, P_{a}=T\)</span></p>
+<hr>
+<p><span class="math inline">\(Q_{3}\)</span>:  Consider the following sentences,</p>
+<ol>
+<li><span class="math inline">\(\forall_{x} \forall_{y} \forall_{z} \bigg[R(x,y) \land R(y,z) \to R(x,z) \bigg]\)</span></li>
+<li><span class="math inline">\(\forall_{x} \forall_{y} \bigg[R(x,y) \to R(y,x) \bigg]\)</span></li>
+<li><span class="math inline">\(\forall_{x} \exist_{y} \bigg[R(x,y) \bigg]\)</span></li>
+<li><span class="math inline">\(\forall_{x} \bigg[ R(x,y) \bigg]\)</span></li>
+</ol>
+<p>Show that <span class="math inline">\({1,2,3} \models {4}\)</span>,</p>
+<blockquote>
+<p>(<span class="math inline">\(\models\)</span> is semantic/logical consequence)</p>
+</blockquote>
+<p>Ans: Given <span class="math inline">\(\forall_{x} \bigg[ R(x,x) \bigg]\)</span><br>
+First we <em>negate</em> as usual.</p>
+<p><span class="math inline">\(\neg \forall_{x} \Big(R(x,x)\Big)\)</span></p>
+<ol start="5">
+<li><span class="math inline">\(\exist_{x} \neg \Big(R(x,x) \Big)\)</span></li>
+<li><span class="math inline">\(\neg R(a,a) \textcolor{red}{\times} \ \ \implies\)</span> (from 5)</li>
+<li><span class="math inline">\(\exist_{y} R(a,y) \ \ \ \implies\)</span> (3, Universal Instantiation)</li>
+<li><span class="math inline">\(R(a,b) \ \textcolor{red}{\times} \ \ \ \ \implies\)</span> (7, Existential Instantiation)</li>
+<li><span class="math inline">\(R(a,b) \to R(b,a)\ \ \ \ \implies\)</span> (substituted, x|a <span class="math inline">\(\And\)</span> y|b in 2)</li>
+</ol>
+<p><span class="math inline">\(\neg R(a,b) \textcolor{red}{\times} \ \ R(b,a) \textcolor{red}{\times}\)</span></p>
+<ol start="10">
+<li>From <span class="math inline">\(\Bigm(x|a, y|b, z|a \ in\  \small(1 \small)\Bigm)\)</span></li>
+</ol>
+<p><img src="https://i.imgur.com/fO8gmvW.png" alt="ST-2"></p>
+<p>This means that the negation of the conclusion is unsatisfiable, ie the conclusion has to be valid</p>
+
+</section>
+    <section class="container tags">
+            <a href="/notes/tags/college.html"><button class='outline'>college</button></a>
+            <a href="/notes/tags/notes.html"><button class='outline'>notes</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>

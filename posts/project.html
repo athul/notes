@@ -1,0 +1,194 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="Personal workflow for building a Project from scratch">
+    <title>Projects from Scratch</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Projects from Scratch</h2>
+</section>
+<section class="container">
+    <blockquote>
+<p>Well Begun is Half done. That is pretty much true.</p>
+</blockquote>
+<h3>Ideation</h3>
+<ul>
+<li>I get the idea. Maybe from a sleepless night</li>
+<li>Maybe from a <a data-balloon-length="large" aria-label="Yeah this is 'Not Invented Here" class="Innerbacklink" href="/notes/posts/nih.html" data-balloon-pos="up">[[Not Invented Here]]</a> situation</li>
+</ul>
+<h3>Research</h3>
+<ul>
+<li>I search about the idea I have. If there are any blog posts/write ups where I can bootstrap from.</li>
+<li>I search GitHub for any implementations available / code samples</li>
+</ul>
+<h3>I'll do it Phase</h3>
+<ul>
+<li>Imagine how I'd want the final result</li>
+<li>Iterate on implementations. Which Language and which framework.</li>
+<li>Ease of Writing.</li>
+<li>Start to Write code till it gets in shape</li>
+<li>Write more code to prettify it</li>
+<li>Show off for my current progress</li>
+<li>Get FeedBack</li>
+<li>Write comments(Very very important) in code/annotate code</li>
+<li>Repeat 2 for any new features</li>
+<li>Blog on it.</li>
+</ul>
+<p>TL;DR: There isn't a golden rule to kick something off. I picture how it'll be finally and work on that.</p>
+
+</section>
+    <section class="container tags">
+            <a href="/notes/tags/code.html"><button class='outline'>code</button></a>
+            <a href="/notes/tags/projects.html"><button class='outline'>projects</button></a>
+            <a href="/notes/tags/other.html"><button class='outline'>other</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>

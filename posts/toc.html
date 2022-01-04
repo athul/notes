@@ -1,0 +1,439 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="Notes on Theory of Computation">
+    <title>Theory of Computation | Module 1</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Theory of Computation | Module 1</h2>
+</section>
+<section class="container">
+    <h1>Module 1</h1>
+<hr>
+<ul>
+<li>Fundamental Couse of CS</li>
+<li>Sciece as CS</li>
+<li>Computation speed and related</li>
+<li>FSM : Finite State Machine</li>
+<li>CFL : Context Free Language</li>
+<li>Turing Machine</li>
+</ul>
+<p>FSM → CFL → Turing Machine</p>
+<blockquote>
+<p>Language here is a <strong>set of Strings</strong></p>
+</blockquote>
+<hr>
+<h1>FSM</h1>
+<ul>
+<li>Symbol: <code>a b c 0 1 2 4...</code></li>
+<li>Alphabet : Denoted by <span class="math inline">\(\Sigma\)</span> is a collection of symbols
+<ul>
+<li>Eg : <span class="math inline">\(\{a,b,c\}\  or \ \{1,2,3\}\)</span></li>
+</ul>
+</li>
+<li>String : Sequence of Symbols
+eg: a,b,c... or aa,bb,cc,...</li>
+<li>Language : Set of Strings
+<ul>
+<li>Eg: <span class="math inline">\(\Sigma = \{0,1\}\)</span></li>
+<li>Set of all strings of Length 2: <span class="math inline">\(\{00,01,10,11,...\}\)</span></li>
+<li>Set of all strings of length 3: <span class="math inline">\(\{000,001,010,....\}\)</span></li>
+<li>Set of all strings that begin with 0: <span class="math inline">\(\{0,001,010,...\}\)</span></li>
+</ul>
+<blockquote>
+<p>Third example is an <span class="math inline">\(\infin\)</span> set</p>
+</blockquote>
+</li>
+</ul>
+<h3>Powers of <span class="math inline">\(\Sigma\)</span></h3>
+<p>Let <span class="math inline">\(\Sigma = \{0,1\}\)</span></p>
+<ul>
+<li><span class="math inline">\(\Sigma^{0}\)</span> = Set of all strings of length 0: <span class="math inline">\(\Sigma^{0} = \{\epsilon\}\)</span>  (Epsilon)</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\epsilon\)</span> denotes all strings of length 0</p>
+</blockquote>
+<ul>
+<li><span class="math inline">\(\Sigma^{1}=\)</span> Set of all strings of length 1; <span class="math inline">\(\Sigma^{1} = \{0,1\}\)</span></li>
+<li><span class="math inline">\(\Sigma^{n}=\)</span> Set of all strings of length n</li>
+</ul>
+<h3>Cardinality</h3>
+<ul>
+<li>No of Elements in a set</li>
+</ul>
+<blockquote>
+<p>Cardinality of <span class="math inline">\(\Sigma^{n}=2^{n}\)</span></p>
+</blockquote>
+<h3><span class="math inline">\(\Sigma^{*}\)</span></h3>
+<p><span class="math inline">\(\Sigma^{*} = \Sigma^{0}\cup\Sigma^{1}\cup\Sigma^{2}\cup......\Sigma^{n}\)</span><br>
+=&gt; <span class="math inline">\(\{\epsilon\}\cup\{0,1\}\cup.....\)</span><br>
+=&gt; Set of all possible strinfgs of all length over <span class="math inline">\(\{0,1\}\)</span> -&gt; <span class="math inline">\(\infin\)</span> set</p>
+<h2>Finite Automata</h2>
+<p><img src="https://i.imgur.com/DlWVtCu.png" alt="FA-1"></p>
+<hr>
+<h3>DFA - Deterministic Finite Automata</h3>
+<ul>
+<li>Simplest Model fo Computation</li>
+<li>It has veru limited memory</li>
+</ul>
+<p><img src="https://i.imgur.com/6o4tvPF.png" alt="DFA-1"></p>
+<ul>
+<li>Circles are <strong>States</strong></li>
+<li>Edges/ Arrows are <strong>transistions</strong></li>
+<li>Labelling are <strong>Inputs</strong></li>
+<li>Double Cirlce is Final State</li>
+<li>Arrow from <em>nowhere</em> is the Initial State</li>
+</ul>
+<p>Every DFA can be represented using 5 tuples <span class="math inline">\(\to (Q,\Sigma,q_{0},F,\delta)\)</span></p>
+<ul>
+<li><span class="math inline">\(Q\)</span> : Set if al States</li>
+<li><span class="math inline">\(\Sigma\)</span> : Inputes</li>
+<li><span class="math inline">\(q_{0}\)</span>: Start state/ Initaial State</li>
+<li><span class="math inline">\(F\)</span> : Set of Final States</li>
+<li><span class="math inline">\(\delta\)</span> : Transisition Function that maps from <span class="math inline">\(Q \times \Sigma \to Q\)</span></li>
+</ul>
+<p>For the Above DFA, the values are</p>
+<ul>
+<li><span class="math inline">\(Q = \{A,B,C,D\}\)</span></li>
+<li><span class="math inline">\(\Sigma = \{0,1\}\)</span></li>
+<li><span class="math inline">\(q_{0}=A\)</span></li>
+<li><span class="math inline">\(F=\{D\}\)</span></li>
+<li><span class="math inline">\(\delta =\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Example Question: Let L1= Set of all strings that stras with 0
+= {0,00,01,000,010,011,0000,....}. Design the DFA</p>
+<p>Answer:</p>
+<p><img src="https://i.imgur.com/b2TuDKV.png" alt="DFA-2"></p>
+<blockquote>
+<p>Here C is the <strong>Dead State of Trap State</strong></p>
+</blockquote>
+<p>Example Question: Construct a DFA that accepts sets of all strings over {0,1} of length 2.</p>
+<p>Answer: <span class="math inline">\(\Sigma =\{0,1\}\)</span> and <span class="math inline">\(L=\{00,01,10,11\}\)</span>
+<img src="https://i.imgur.com/TPbqPkx.png" alt="DFA-3"></p>
+<h2>RegularLanguage</h2>
+<ul>
+<li>a regular language is said to be a regular language <span class="math inline">\(\iff\)</span> a finite state machhine recognizes it</li>
+<li>Not Regular
+<ul>
+<li>When requires memory</li>
+<li>Not recognized by FSM</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Memory of FSM is very Limited and canno count strings</p>
+</blockquote>
+<h3>Operations on Regular Languages</h3>
+<p><strong>Union</strong> : <span class="math inline">\(A\cup B=\{x\mid x\in A \ or\  x\in B\}\)</span><br>
+<strong>Concatenation</strong>: <span class="math inline">\(A \circ B=\{xy\mid x\in A\ and\ y\in B\}\)</span><br>
+<strong>Star</strong>: <span class="math inline">\(A\ast=\{x_1,x_2,x_3\dots x_k\mid k\ge0 \  and \ each\  x_i\in A\}\)</span></p>
+<p>Eg: <span class="math inline">\(A=\{pq,r\},B=\{t,uv\}\)</span><br>
+Ans:</p>
+<ul>
+<li><span class="math inline">\(A\cup B=\{pq,r,t,uv\}\)</span></li>
+<li><span class="math inline">\(A\circ B=\{pqt,pquv,rt,ruv\}\)</span></li>
+<li><span class="math inline">\(A\ast =\{\epsilon,pq,r,pqr,rpq\dots\} = \infin \ set\)</span></li>
+</ul>
+<p><strong>Theorem 1</strong>: The class of Reglular Lanugauges is closed under <em>Union</em>(<span class="math inline">\(\cup\)</span>)<br>
+<strong>Theorem 2</strong>: The class of RL is closed under <em>Concatenation</em>(<span class="math inline">\(\circ\)</span>)</p>
+<h2>NFA - Non Deterministic Finite Automata</h2>
+<ul>
+<li>There could be multiple Next states</li>
+<li>The next state could be chosen at random</li>
+<li>All the next states may be chosen in Parallel</li>
+</ul>
+<p><img src="https://i.imgur.com/SFegOow.png" alt="NFA-1"></p>
+<h3>NFA - Formal Definition</h3>
+<ul>
+<li>NFA are defined using
+<ul>
+<li><span class="math inline">\(Q\)</span> : Set if al States</li>
+<li><span class="math inline">\(\Sigma\)</span> : Inputs</li>
+<li><span class="math inline">\(q_{0}\)</span>: Start state/ Initaial State</li>
+<li><span class="math inline">\(F\)</span> : Set of Final States</li>
+<li><span class="math inline">\(\delta\)</span> : Transisition Function that maps from <span class="math inline">\(Q \times \Sigma \to 2^{Q}\)</span></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/qY4BBBD.png" alt="NFA-2"></p>
+<p>L={Set of all strings that end with 0}</p>
+<blockquote>
+<p>If there is any way to run the machine that <strong>ends in any set of states</strong> out of which <strong>atleast one state is a final state</strong>, then the NFA accepts</p>
+</blockquote>
+<p>For examples, check this <a href="https://youtu.be/NGF-b3QVeJU">video</a></p>
+<h2>Conversion NFA to DFA</h2>
+<blockquote>
+<p>Every DFA is an NFA, but not vice-versa. But there is an equivalent DFA for every NFA</p>
+</blockquote>
+<p>Things to keep in mind</p>
+<ul>
+<li><span class="math inline">\(\phi\)</span> in NFA is the Dead State in DFA</li>
+<li>NFA's <span class="math inline">\(\phi\)</span> should be replaced by another state in DFA</li>
+</ul>
+<p><em>Example 1</em>: Convert to DFA, <code>L={Set of all strings over(0,1) that starts with 0}</code></p>
+<p><em><em>Answer</em></em>: <span class="math inline">\(\Sigma=\{0,1\}\)</span></p>
+<p><img src="https://i.imgur.com/yGp8PuV.png" alt="NFA(NFA to DFA)"></p>
+<p>Transition Table:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center"><span class="math inline">\(\phi\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">B</td>
+</tr>
+</tbody>
+</table>
+<p>While converting this to DFA, we have to account the <span class="math inline">\(\phi\)</span> as it should be converted to a <strong>dead state</strong>. This gives us the Transition Table,</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">C</td>
+</tr>
+</tbody>
+</table>
+<p>Which gives us the DFA, where <code>C</code> is the dead state</p>
+<p><img src="https://i.imgur.com/b2TuDKV.png" alt="DFA-2"></p>
+<h2>Minimization of DFA</h2>
+<ul>
+<li>
+<p>To obtain the minimal version of any DFA which consists of the min number of states possible</p>
+</li>
+<li>
+<p>Equivalent states can be combined</p>
+</li>
+<li>
+<p>Two states can be equivalent if,
+<span class="math inline">\(\delta(A,X) \to F\)</span> and <span class="math inline">\(\delta(A,X) \nrightarrow F\)</span> OR <span class="math inline">\(\delta(B,X) \to F\)</span> and <span class="math inline">\(\delta(B,X) \nrightarrow F\)</span></p>
+</li>
+</ul>
+<blockquote>
+<p>Where <code>X</code> is any i/p string</p>
+</blockquote>
+<p><em>If <span class="math inline">\(|X| = n\)</span> the A and B are said to be <code>n</code> equivalent</em></p>
+<blockquote>
+<p>Refer <a href="https://youtu.be/0XaGAkY09Wc">https://youtu.be/0XaGAkY09Wc</a> for better Idea &#x1f604;</p>
+</blockquote>
+
+</section>
+    <section class="container link">
+        <h3>Connections</h3>
+            <ul>
+                                <li><a href="/notes">Index</a></li>
+            </ul>
+    </section>
+    <section class="container tags">
+            <a href="/notes/tags/college.html"><button class='outline'>college</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>

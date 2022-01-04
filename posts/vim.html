@@ -1,0 +1,233 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Athul Cyriac Ajay">
+    
+    <meta name="description" content="My Vim-istham on Vim">
+    <title>Some Vim Commands</title>
+    
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/png" href="images/memo.png"/>
+    <link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png"/>
+    <!-- Link to CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="/notes/css/main.css" />
+    <link rel="stylesheet" href="/notes/css/balloon.min.css">
+    
+    <!-- Load Katex scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <!-- Load Search script -->
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+</head>
+   <body>
+      <div id="page-container">
+         <div id="content-wrap">
+
+<navbar class="horizontal-align">
+    
+        <div class="nav-item"><a href="/notes/">വീട്</a></div>
+        <div class="nav-item"><a href="/notes/all.html">കുറിപ്പുകൾ</a></div>
+        <div class="nav-item"><a href="/notes/graph.html">ഗ്രാഫ്‌</a></div>
+    
+    <div class="nav-item">
+        <div id="fastSearch">
+            <input id="searchInput" tabindex="0" autocomplete="off" placeholder="Search..." type="search">
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+</navbar>
+<section class="meta container">
+    <h2>Some Vim Commands</h2>
+</section>
+<section class="container">
+    <p>Some default Vim Commands, after reading a book on how to use Vim &#x1f601;</p>
+<hr>
+<p>Navigation:</p>
+<ul>
+<li><code>k</code> for up</li>
+<li><code>j</code> for down</li>
+<li><code>h</code> for left</li>
+<li><code>l</code> for right</li>
+</ul>
+<hr>
+<ul>
+<li><code>x</code> → Deletes the Character under the Cursor</li>
+<li><code>.</code> → Repeats the Previous command</li>
+<li><code>o</code> &#x1f449;  will create a line below the cursor and go to <code>INSERT</code> mode.</li>
+<li><code>O</code> will create a line above the cursor and go to <code>INSERT</code> mode</li>
+<li><kbd>Ctrl+r</kbd> to redo</li>
+<li><code>u</code> → undos <code>x</code></li>
+<li><code>~</code> will change the case of the letter under the Cursor</li>
+<li><code>dd</code> → Deletes current line</li>
+<li><code>&gt;G</code> → ↑s indendations till EOF</li>
+<li><code>&lt;G</code> → ↓s the indendation of the file</li>
+<li><code>daw</code> will delete an entire word</li>
+<li><code>d&lt;n&gt;w</code> will delete n words in the line
+<ul>
+<li><code>d2w</code> will delete 2 words</li>
+<li><code>d7w</code> will delete 7 words</li>
+</ul>
+</li>
+<li><code>y</code> to copy the items under the cursor.</li>
+<li><code>d</code> to cut the items under the cursor</li>
+<li><code>p</code> to paste items after the cursor and <code>P</code> to paste items before the cursor</li>
+</ul>
+<hr>
+<h2>Searching</h2>
+<p>Vim search is friendly &#x1f601;</p>
+<p>To search we can use <code>/{regex pattern}</code> . Use <kbd>n</kbd> to move to the next match and <kbd>N</kbd> to move back</p>
+<h2>Search and Replace</h2>
+<p>We can use the <code>/{search}</code> method to find the word and use the motion <code>cgn</code> to change the word and enter the new word. Then go back to <code>NORMAL</code> mode and pressing <kbd>n</kbd> to go to next character and use <code>.</code> to repeat the motion. Downside is that this is manual and tedious.</p>
+<p>To search and replace on a single line we can use the <code>:s</code> command</p>
+<pre style="color:#f8f8f2;background-color:#272822">:<span style="color:#a6e22e">s</span><span style="color:#e6db74">/{search_pattern}/</span>{<span style="color:#a6e22e">replace_pattern</span>}/{<span style="color:#a6e22e">options</span>}<span style="color:#960050;background-color:#1e0010">
+</span></pre><ul>
+<li>options
+<ul>
+<li>c (for confirmation),</li>
+<li>g (replace all occurrence in one line)</li>
+<li>i (for ignoring the case)</li>
+</ul>
+</li>
+</ul>
+<p>To replace all the occureneces in the file we can use <code>:%s</code> instead of <code>:s</code></p>
+<hr>
+<h2>Using Terminal in NeoVim</h2>
+<blockquote>
+<p>Learn more about <a data-balloon-length="large" aria-label="The Terminal fetaure in Neovim" class="Innerbacklink" href="/notes/posts/vim_terminal.html" data-balloon-pos="up">[[Terminal in NeoVim]]</a></p>
+</blockquote>
+<p>Thanks to my friend <a href="https://github.com/AndrewBastin">Andrew Bastin</a> for Suggesting me <a href="https://github.com/voldikss/vim-floaterm">Floaterm</a>, I use Floaterm Now.</p>
+<p><img src="https://i.imgur.com/EQZeVNy.png" alt="Imgur"></p>
+<p>A Floating terminal inside NeoVim. How cool is That??? As mentioned in &quot;<a data-balloon-length="large" aria-label="The Terminal fetaure in Neovim" class="Innerbacklink" href="/notes/posts/vim_terminal.html" data-balloon-pos="up">[[Terminal in NeoVim]]</a>&quot; the <code>NORMAL</code> mode Keybinding is a tad hard, so as a <em>noob</em> vim user, I added the binding to <code>ESC</code> key. It's easier for me that way. I also remapped a few things to get terminal a bit easier from the <code>NORMAL</code> mode.</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#a6e22e">nmap</span> <span style="color:#a6e22e">fn</span> :<span style="color:#a6e22e">FloatermNew</span> <span style="color:#a6e22e">zsh</span>&lt;<span style="color:#a6e22e">CR</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">nmap</span> <span style="color:#a6e22e">ft</span> :<span style="color:#a6e22e">FloatermToggle</span>&lt;<span style="color:#a6e22e">CR</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">nmap</span> <span style="color:#a6e22e">fp</span> :<span style="color:#a6e22e">FloatermNext</span>&lt;<span style="color:#a6e22e">CR</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">nmap</span> <span style="color:#a6e22e">fk</span> :<span style="color:#a6e22e">FloatermKill</span>&lt;<span style="color:#a6e22e">CR</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#a6e22e">nmap</span> <span style="color:#a6e22e">fo</span> :<span style="color:#a6e22e">FloatermPrev</span>&lt;<span style="color:#a6e22e">CR</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span></pre><p>For remapping the command from the terminal I used this &#x1f447;</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#a6e22e">tnoremap</span> &lt;<span style="color:#a6e22e">ESC</span>&gt; &lt;<span style="color:#a6e22e">C</span>-\&gt;&lt;<span style="color:#a6e22e">C</span>-<span style="color:#a6e22e">n</span>&gt;<span style="color:#960050;background-color:#1e0010">
+</span></pre><h2>Using free Real Estate</h2>
+<p>Check out <a data-balloon-length="large" aria-label="Using Tabs and Panes in Vim/Neovim" class="Innerbacklink" href="/notes/posts/vim_tabs.html" data-balloon-pos="up">[[Tabs and Panes in Vim]]</a></p>
+
+</section>
+    <section class="container tags">
+            <a href="/notes/tags/terminal.html"><button class='outline'>terminal</button></a>
+            <a href="/notes/tags/vim.html"><button class='outline'>vim</button></a>
+    </section>
+         </div>
+<footer class="horizontal-align">
+<p>Made with <span style="color: #e25555;">&#9829;</span> by customized
+    <a id="footer-link" href="https://github.com/athul/zet" target="blank">
+    <span id="footer-link-text"> zettel</span>
+    </a>
+</p>
+</footer>
+<script>
+// Code by Craig Mod under MIT License
+// https://gist.github.com/cmod/5410eae147e4318164258742dd053993    
+var fuse; 
+var list = document.getElementById('searchResults'); 
+var first = list.firstChild; 
+var last = list.lastChild; 
+var maininput = document.getElementById('searchInput'); 
+var resultsAvailable = false; 
+var baseURL = window.location.pathname.split("/")[1]
+if (baseURL.length === 0 || baseURL.includes("html") || baseURL.includes("posts")) {
+    baseURL = window.location.origin
+} else {
+    baseURL = "/" + baseURL
+}
+console.log(baseURL)
+loadSearch()
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode == 27) {
+      document.activeElement.blur();
+      resultsAvailable = false;
+      list.style.display="none"
+  }
+  if (event.keyCode == 40) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { first.focus(); } 
+      else if ( document.activeElement == last ) { last.focus(); } 
+      else { document.activeElement.parentElement.nextSibling.firstElementChild.focus(); } 
+    }
+  }
+  if (event.keyCode == 38) {
+    if (resultsAvailable) {
+      event.preventDefault(); 
+      if ( document.activeElement == maininput) { maininput.focus(); } 
+      else if ( document.activeElement == first) { maininput.focus(); } 
+      else { document.activeElement.parentElement.previousSibling.firstElementChild.focus(); } 
+    }
+  }
+});
+document.getElementById("searchInput").onkeyup = function(e) {
+    list.style.display=""
+  executeSearch(this.value);
+}
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+          if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+function loadSearch() { 
+  fetchJSONFile(baseURL + "/data/search.json", function(data){
+    var options = { 
+      shouldSort: true,
+      location: 0,
+      distance: 100,
+      threshold: 0.3,
+      minMatchCharLength: 1,
+      keys: [{name:'title',weight:1},{name:'tags',weight:0.3}]
+    };
+    fuse = new Fuse(data, options); 
+  });
+}
+function executeSearch(term) {
+  let results = fuse.search(term); 
+  let searchitems = ''; 
+  if (results.length === 0) { 
+    resultsAvailable = false;
+    searchitems = '';
+  } else { 
+    for (let item in results.slice(0,5)) { 
+    const tags = results[item].tags
+    const title = results[item].title.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    if (Array.isArray(tags) && tags.length){ // Check if any tags are present or not
+      hltags = results[item].tags.map((value)=>{
+      return value.replace(new RegExp(term, "gi"), (match) => `<mark class="searchHgl">${match}</mark>`);
+    })
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</span> — " + hltags + "</a></li>";
+    }else{
+    searchitems = searchitems + '<li><a href="' + baseURL + '/' + results[item].permalink + '" tabindex="0"><span class="title">' + title + "</a></li>";
+    }}
+    resultsAvailable = true;
+  }
+  document.getElementById("searchResults").innerHTML = searchitems;
+  if (results.length > 0) {
+    first = list.firstChild.firstElementChild; 
+    last = list.lastChild.firstElementChild; 
+  }
+}
+</script>
+<script src="https://smq654.deta.dev/a.js" type="text/javascript"></script>
+      </div>
+   </body>
+</html>
